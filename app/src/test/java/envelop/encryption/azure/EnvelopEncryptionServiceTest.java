@@ -3,23 +3,10 @@ package envelop.encryption.azure;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
-import java.util.Base64;
-
 import javax.crypto.SecretKey;
 import javax.crypto.spec.IvParameterSpec;
-import javax.crypto.spec.SecretKeySpec;
 
 import org.junit.Test;
-
-import com.azure.identity.DefaultAzureCredentialBuilder;
-import com.azure.security.keyvault.keys.cryptography.CryptographyClient;
-import com.azure.security.keyvault.keys.cryptography.CryptographyClientBuilder;
-import com.azure.security.keyvault.keys.cryptography.models.KeyWrapAlgorithm;
-import com.azure.security.keyvault.keys.cryptography.models.UnwrapResult;
-import com.azure.security.keyvault.keys.cryptography.models.WrapResult;
-import com.azure.security.keyvault.secrets.SecretClient;
-import com.azure.security.keyvault.secrets.SecretClientBuilder;
-import com.azure.security.keyvault.secrets.models.KeyVaultSecret;
 
 import envelope.encryption.azure.EnvelopEncryptionService;
 

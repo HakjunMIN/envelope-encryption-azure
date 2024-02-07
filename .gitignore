@@ -6,4 +6,5 @@ build
 *.iws
 *.ids
 *.bak
+.vscode
 
