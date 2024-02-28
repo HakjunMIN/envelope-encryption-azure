@@ -1,3 +1,5 @@
+![CI](https://github.com/HakjunMIN/envelope-encryption-azure/actions//workflows/gradle.yml/badge.svg)
+
 # Envelope Encryption using Azure Keyvault
 
 ## 시나리오
