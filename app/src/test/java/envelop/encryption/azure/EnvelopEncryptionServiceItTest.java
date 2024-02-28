@@ -42,6 +42,16 @@ public class EnvelopEncryptionServiceItTest {
             prop.load(input);
             keyIdentifier = prop.getProperty("keyIdentifier");
             keyVaultUrl = prop.getProperty("keyVaultUrl");
+
+            if (keyVaultUrl == null || keyVaultUrl.isEmpty()) {
+                keyVaultUrl = System.getenv("keyVaultUrl");
+            }
+
+            if (keyIdentifier == null || keyIdentifier.isEmpty()) {
+                keyIdentifier = System.getenv("keyIdentifier");
+            }
+
+            
         } catch (IOException ex) {
             ex.printStackTrace();
         }

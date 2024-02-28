@@ -23,6 +23,35 @@
 
 ## Quick start
 
-```bash
+* 실행하는 Azure 계정이 Keyvault의 키와 secret정보를 사용할 수 있어야 함. 
 
+> [!Note]
+> https://learn.microsoft.com/ko-kr/azure/key-vault/general/rbac-guide?tabs=azure-cli
+
+```bash
+$ az login
+$ export keyIdentifier=<your-key-identifiler>  # ex: 'https://test.vault.azure.net/keys/mykey'
+$ export keyVaultUrl=<your-keyvault-url> # ex: 'https://test.vault.azure.net'
+$ ./gradlew clean test
+```
+
+* 결과 
+
+```bash
+> Task :app:test
+
+envelop.encryption.azure.EnvelopEncryptionServiceItTest
+
+  Test testEnvelopeEncryptionIntegration PASSED (6s)
+
+envelop.encryption.azure.EnvelopEncryptionServiceTest
+
+  Test testGenerateIv PASSED
+  Test testGenerateKey PASSED
+  Test testEncryptionAndDecryption PASSED
+
+SUCCESS: Executed 4 tests in 7s
+
+
+BUILD SUCCESSFUL in 8s
 ```
