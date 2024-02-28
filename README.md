@@ -1,4 +1,4 @@
-# Envelope Encryption using Azure Kevvault
+# Envelope Encryption using Azure Keyvault
 
 ## 시나리오
 
@@ -23,7 +23,7 @@
 
 ## Quick start
 
-* 실행하는 Azure 계정이 Keyvault의 키와 secret정보를 사용할 수 있어야 함. 
+* 실행하는 Azure 계정이 Keyvault의 키와 secret정보를 사용할 수 있어야 함. 아래 url참고
 
 > [!Note]
 > https://learn.microsoft.com/ko-kr/azure/key-vault/general/rbac-guide?tabs=azure-cli
