@@ -38,6 +38,8 @@ $ ./gradlew clean test
 ```
 
 * 결과 
+    * 단위테스트: EnvelopEncryptionServiceTest
+    * 통합테스트: EnvelopEncryptionServiceItTest
 
 ```bash
 > Task :app:test
@@ -56,4 +58,33 @@ SUCCESS: Executed 4 tests in 7s
 
 
 BUILD SUCCESSFUL in 8s
+```
+
+## 통합테스트 설명
+
+```java 
+    ...
+    // DEK생성
+    String input = "secret";
+    SecretKey key = service.generateKey(128);
+
+    // DEK암호화 (Wrap)
+    WrapResult wrapResult = cryptoClient.wrapKey(KeyWrapAlgorithm.RSA_OAEP, key.getEncoded());
+    String encryptedKey = Base64.getEncoder().encodeToString(wrapResult.getEncryptedKey());
+
+    // 암호화된 DEK는 secret으로 저장 (Base64 encoding)
+    secretClient.setSecret("encryptedKey", encryptedKey);
+    KeyVaultSecret retrievedSecret = secretClient.getSecret("encryptedKey");
+
+    // 암호화된 DEK 사용시 복호화
+    UnwrapResult unwrapResult = cryptoClient.unwrapKey(KeyWrapAlgorithm.RSA_OAEP, Base64.getDecoder().decode(retrievedSecret.getValue()));
+    SecretKey finalKey = new SecretKeySpec(unwrapResult.getKey(), "AES");
+
+    // Value를 DEK로 암복호화
+    IvParameterSpec ivParameterSpec = service.generateIv();
+    String algorithm = "AES/CBC/PKCS5Padding";
+    String cipherText = service.encrypt(algorithm, input, finalKey, ivParameterSpec);
+    String plainText = service.decrypt(algorithm, cipherText, finalKey, ivParameterSpec);
+
+    ...
 ```
